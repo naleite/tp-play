@@ -23,7 +23,7 @@ import java.util.function.Function;
 /**
  * Controller grouping actions related to the journeys service.
  */
-@Security.Authenticated
+@Security.Authenticated(MyAuthenticator.class)
 public class Journeys extends Controller {
 
     /**
@@ -43,6 +43,7 @@ public class Journeys extends Controller {
      * Show the details of the journey with the given id
      */
     public static F.Promise<Result> journey(Long id) {
+
         throw new NotImplementedError();
     }
 

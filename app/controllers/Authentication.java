@@ -61,11 +61,11 @@ public class Authentication extends Controller {
      * Logs out an user (remove his name from his session) and show a good bye message
      */
     public static Result logout() {
-
+        String username=username();
         session().clear();
 
        // return ok("<h1>good bye "+name+"!</h1>").as("logout.html");
-        return ok(views.html.logout.render());
+        return ok(views.html.logout.render(username));
     }
 
     /**
