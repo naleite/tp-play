@@ -35,9 +35,12 @@ public class Authentication extends Controller {
      */
     public static Result authenticate() {
         Form<Login> formLogin = form(Login.class).bindFromRequest();
-        if (formLogin.hasErrors()) {
-            return badRequest("bad form");
-        } else {
+        if (formLogin.hasErrors())
+        {
+            return badRequest(views.html.login.render(formLogin));
+        }
+        else
+        {
             Login newLogin = formLogin.get();
 
             if (newLogin.name.equals("test")  && newLogin.password.equals("test")) {
@@ -46,7 +49,7 @@ public class Authentication extends Controller {
                 session("username",newLogin.name);
                 return redirect(routes.Journeys.journeys());
             }
-            else return badRequest("bad user");
+            else return badRequest(views.html.login.render(formLogin));
         }
 
 
@@ -92,14 +95,27 @@ public class Authentication extends Controller {
 
         // If needed, override this method to add a “global” validation rule (i.e not related to a particular field)
         public List<ValidationError> validate() {
-            if(name.isEmpty()||password.isEmpty()){
-                List<ValidationError>l= new ArrayList<>();
-                l.add(new ValidationError("name or pass","error"));
-                return l;
-
+            boolean ifnull=true;
+            List<ValidationError> l = new ArrayList<>();
+            if(this.name.equals(""))
+            {
+                ValidationError v = new ValidationError("name", "empty username");
+                l.add(v);
+                ifnull=false;
             }
-            else{
+            if(this.password.equals(""))
+            {
+                ValidationError v = new ValidationError("password", "empty password");
+                l.add(v);
+                ifnull=false;
+            }
+            if (ifnull)
+            {
                 return null;
+            }
+            else
+            {
+                return l;
             }
 
         }
