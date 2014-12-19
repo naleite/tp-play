@@ -39,14 +39,15 @@ public class AuthenticationTest extends WithBrowser {
 
         browser.submit("form");
         // Validation error
-        assertThat(browser.pageSource()).contains("bad form");
+        assertThat(browser.pageSource()).contains("empty username");
+        assertThat(browser.pageSource()).contains("empty password");
 
         // Submit an invalid form
         browser.goTo(routes.Journeys.journeys().url());
         browser.fill("[name=name]").with("tes");
         browser.fill("[name=password]").with("tddddd");
         browser.submit("form");
-        assertThat(browser.pageSource()).contains("bad user");
+        assertThat(browser.url()).isEqualTo(routes.Authentication.login().url());
     }
 
 }

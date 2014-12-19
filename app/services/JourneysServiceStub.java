@@ -4,7 +4,6 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import static akka.pattern.Patterns.ask;
 import akka.japi.pf.ReceiveBuilder;
 import akka.util.Timeout;
 import play.libs.F;
@@ -17,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
+import static akka.pattern.Patterns.ask;
 
 /**
  * A in-memory implementation of the JourneysService interface.
@@ -108,7 +109,10 @@ public class JourneysServiceStub implements JourneysService {
         }
     }
 
-    static class AllJourneys {}
+    static class AllJourneys {
+
+
+    }
     static class JoinAttendee {
         public final Long journeyId;
         public final Long attendeeId;

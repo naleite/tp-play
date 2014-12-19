@@ -32,9 +32,11 @@ public class JourneysServiceHTTP implements JourneysService {
     public F.Promise<List<Journey>> allJourneys() {
         // Example of implementation performing a GET request to the `/journeys` endpoint and interpreting the result as
         // a list of Journey values.
-        return client.url(API_URL + "/journeys")
+        return client.url(API_URL + "/rest/ev")
                 .get()
-                .map(r -> mapper.readValue(r.getBody(), new TypeReference<List<Journey>>() {}));
+                .map(r -> mapper.readValue(r.getBody(), new TypeReference<List<Journey>>(){
+
+                } ));
     }
 
     @Override

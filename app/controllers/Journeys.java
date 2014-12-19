@@ -1,18 +1,13 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import play.Routes;
-import play.data.Form;
 import play.data.validation.Constraints;
 import play.libs.Akka;
-import play.libs.EventSource;
 import play.libs.F;
-import play.libs.ws.WS;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
 import play.mvc.Security;
-import rx.Subscription;
 import scala.NotImplementedError;
 import services.JourneysService;
 import services.JourneysServiceStub;
@@ -30,6 +25,7 @@ public class Journeys extends Controller {
      * The entry point to the service implementation.
      */
     static JourneysService service = new JourneysServiceStub(Akka.system());
+    //static JourneysService service = new JourneysServiceHTTP(play.libs.ws.WS.client());
 
     /**
      * Show all visible journeys
@@ -44,7 +40,10 @@ public class Journeys extends Controller {
      */
     public static F.Promise<Result> journey(Long id) {
 
-        throw new NotImplementedError();
+        Journey journey=service.allJourneys().;
+        return service.allJourneys().get(id)
+                map(journey -> ok(views.html.journey.render()));
+        //throw new NotImplementedError();
     }
 
     /**

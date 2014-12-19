@@ -34,6 +34,11 @@ public class Authentication extends Controller {
      * Otherwise, the user must be authenticated (his user id should be stored into his session) and redirected to the index page.
      */
     public static Result authenticate() {
+        // - Read the data of the form submission
+        // - If data is valid, check that the user name and password are correct
+        // - If everything is alright associate the user’s name to the "username" key in his session and redirect him to the Journeys.journeys action
+        // - In case of failure, reply with a 400 status code (Bad Request) and show the form with the validation errors
+
         Form<Login> formLogin = form(Login.class).bindFromRequest();
         if (formLogin.hasErrors())
         {
@@ -53,11 +58,7 @@ public class Authentication extends Controller {
         }
 
 
-        // TODO:
-        // - Read the data of the form submission
-        // - If data is valid, check that the user name and password are correct
-        // - If everything is alright associate the user’s name to the "username" key in his session and redirect him to the Journeys.journeys action
-        // - In case of failure, reply with a 400 status code (Bad Request) and show the form with the validation errors
+
     }
 
     /**
