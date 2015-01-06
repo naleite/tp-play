@@ -11,6 +11,9 @@ GET        /auth/logout                        controllers.Authentication.logout
 
 # Other Journeys actions
 GET        /journey/:id                        controllers.Journeys.journey(id: Long)
+
+
+
 # TODO Part 2: insert routes handling users joining a journey here
 
 # Part 3: Stream manipulation
@@ -21,3 +24,5 @@ GET        /journey/:id/attendees              controllers.Journeys.attendees(id
 GET        /assets/javascript/routes.js        controllers.Journeys.javaScriptRouter()
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file                       controllers.Assets.at(path="/public", file)
+
+

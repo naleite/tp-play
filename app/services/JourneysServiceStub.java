@@ -71,7 +71,7 @@ public class JourneysServiceStub implements JourneysService {
 
         public JourneyServiceActor() {
             journeys = new ArrayList<>();
-            journeys.add(new Journey(1L, "Software engineering seminar", new ArrayList<Attendee>() {{ add(new Attendee(1L, "Olivier Barais", 3)); add(new Attendee(2L, "Julien Richard-Foy", 2)); }}));
+            //journeys.add(new Journey(1L, "","Software engineering seminar", new ArrayList<Attendee>() {{ add(new Attendee(1L, "Olivier Barais", 3)); add(new Attendee(2L, "Julien Richard-Foy", 2)); }}));
             receive(ReceiveBuilder.
                     match(AllJourneys.class, m -> sender().tell(new ArrayList<>(journeys), self())).
                     match(AttendJourney.class, m -> {
@@ -108,7 +108,10 @@ public class JourneysServiceStub implements JourneysService {
         }
     }
 
-    static class AllJourneys {}
+    static class AllJourneys {
+
+
+    }
     static class JoinAttendee {
         public final Long journeyId;
         public final Long attendeeId;

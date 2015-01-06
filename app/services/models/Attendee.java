@@ -5,12 +5,16 @@ package services.models;
  */
 public class Attendee {
     public final Long id;
-    public final String name;
+    public final String nom;
+    public final String localisation;
+    public final String  destination;
     public final Integer availableSeats;
 
-    public Attendee(Long id, String name, Integer availableSeats) {
+    public Attendee(Long id, String name, String local,  String dest,Integer availableSeats) {
         this.id = id;
-        this.name = name;
-        this.availableSeats = availableSeats;
+        this.nom = name;
+        this.destination=dest;
+        this.localisation=local;
+        this.availableSeats = 10;
     }
 }
