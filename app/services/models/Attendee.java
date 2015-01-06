@@ -8,13 +8,13 @@ public class Attendee {
     public final String nom;
     public final String localisation;
     public final String  destination;
-    public final Integer availableSeats;
+    public final Voiture voiture;
 
-    public Attendee(Long id, String name, String local,  String dest,Integer availableSeats) {
+    public Attendee(Long id, String name, String localisation,  String destination, Voiture voiture) {
         this.id = id;
         this.nom = name;
-        this.destination=dest;
-        this.localisation=local;
-        this.availableSeats = 10;
+        this.destination=destination;
+        this.localisation=localisation;
+        this.voiture=voiture;
     }
 }

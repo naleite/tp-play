@@ -1,25 +1,35 @@
 package services.models;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 /**
  * A journey is identified by `id`, it has a `name` and a list of attending people `attendees`.
  */
 public class Journey {
-    public Long id;
-    //public final String name;
-    public String dest;
-    public String depart;
-    public String nbPersonRest;
-    public Attendee conducteur;
-    public String dateDeDepart;
-    public List<Attendee> attendees;
+    public final Long id;
+    public final String dest;
+    public final String depart;
+    public final int nbPersonRest;
+    public final Attendee conducteur;
+    public final String dateDeDepart;
+    public final List<Attendee> attendees;
+    public final List<Comment> listComEv;
 
-   /** public Journey(Long id, String dest, String depart, List<Attendee> attendees) {
+   public Journey(Long id, String dest, String depart, String dateDepart,
+                  List<Attendee> attendees,
+                  Integer nbPersonRest,
+                  List<Comment> listComEv,
+                  Attendee conducteur,String d) {
         this.id = id;
         this.dest = dest;
         this.depart=depart;
-       // name= dest+" "+depart;
         this.attendees = attendees;
-    }**/
+        this.conducteur=conducteur;
+        this.listComEv= listComEv;
+        this.dateDeDepart=dateDepart;//pas utilisé
+        this.nbPersonRest=nbPersonRest;
+
+    }
 }
