@@ -1,12 +1,16 @@
 @(username: String, journeys: java.util.List[services.models.Journey])
 
 @layout {
-    <h1>Bienvenue sur notre super site de covoiturage!</h1>
+    <h1 style="text-align:center">Bienvenue sur notre super site de covoiturage!</h1>
 
-    <h2>Liste des evenements:</h2>
+    <h2>Liste des évenements:</h2>
     <ul>
         @for(journey <- journeys) {
             <li><a href="@routes.Journeys.journey(journey.id)">id= @journey.id: @journey.depart - @journey.dest</a> (<a href="@routes.Journeys.observe(journey.id)">observe</a>)</li>
         }
     </ul>
+
+    <footer style="float:right;margin-top:200px;">
+        <p>Marinier Josian - Na Leite, M2 info GL Univ Rennes 1
+    </footer>
 }
