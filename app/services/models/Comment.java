@@ -5,15 +5,20 @@ package services.models;
  */
 public class Comment {
 
-    public final Long id;
-    public final String value;
+    public  Long id;
+    public  String value;
     public Attendee personne;
 
     //utilisé dans JOURNEY
-    Comment(Long id, String value, Attendee personne)
+    public Comment(Long id, String value, Attendee personne)
     {
         this.id=id;
         this.value=value;
         this.personne = personne;
+    }
+
+    public Comment()
+    {
+
     }
 }

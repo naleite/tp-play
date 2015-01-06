@@ -33,12 +33,11 @@ public class JourneysServiceHTTP implements JourneysService {
         // Example of implementation performing a GET request to the `/journeys` endpoint and interpreting the result as
         // a list of Journey values.
 
-        System.out.println("aaaaaaaaa"+client.url(API_URL + "/rest/ev/").get());
+        //System.out.println("/********* "+client.url(API_URL + "/rest/ev/").get().map(r -> r.asJson()).toString());
 
         return client.url(API_URL + "/rest/ev/")
                 .get()
                 .map(r -> mapper.readValue(r.getBody(), new TypeReference<List<Journey>>() {}));
-
 
     }
 

@@ -5,14 +5,18 @@ package services.models;
  */
 public class Voiture {
 
-    public final Long id;
-    public final String series;
-    public final Integer nbPlaceTotal;
+    public Long id;
+    public String series;
+    public String nbPlaceTotal;
 
-    public Voiture(Long id, String series,Integer nbPlaceTotal) {
-        this.id = id;
+   public Voiture(Long id, String series,String nbPlaceTotal) {
+        this.id =id;
         this.series=series;
         this.nbPlaceTotal = nbPlaceTotal;
     }
 
+    public Voiture()
+    {
+
+    }
 }
