@@ -11,13 +11,13 @@ public class Journey {
     public final Long id;
     public final String dest;
     public final String depart;
-    public final int nbPersonRest;
+    public final Integer nbPersonRest;
     public final Attendee conducteur;
     public final String dateDeDepart;
     public final List<Attendee> attendees;
     public final List<Comment> listComEv;
 
-   public Journey(Long id, String dest, String depart, String dateDepart,
+   public Journey(Long id, String dest, String depart, String dateDeDepart,
                   List<Attendee> attendees,
                   Integer nbPersonRest,
                   List<Comment> listComEv,
@@ -28,8 +28,8 @@ public class Journey {
         this.attendees = attendees;
         this.conducteur=conducteur;
         this.listComEv= listComEv;
-        this.dateDeDepart=dateDepart;//pas utilisé
+        this.dateDeDepart=dateDeDepart;//pas utilisé
         this.nbPersonRest=nbPersonRest;
 
-    }
+   }
 }

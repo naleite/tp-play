@@ -12,7 +12,7 @@ public class Voiture {
     public Voiture(Long id, String series,Integer nbPlaceTotal) {
         this.id = id;
         this.series=series;
-        this.nbPlaceTotal = nb;
+        this.nbPlaceTotal = nbPlaceTotal;
     }
 
 }
