@@ -44,7 +44,7 @@ public class Authentication extends Controller {
             Login newLogin = formLogin.get();
 
             if (newLogin.name.equals("test")  && newLogin.password.equals("test")) {
-                //return ok("hello" + newLogin.name);
+
                 session().clear();
                 session("username",newLogin.name);
                 return redirect(routes.Journeys.journeys());
@@ -67,7 +67,7 @@ public class Authentication extends Controller {
         String username=username();
         session().clear();
 
-       // return ok("<h1>good bye "+name+"!</h1>").as("logout.html");
+        //return ok("<h1>good bye "+username+"!</h1>").as("logout.html");
         return ok(views.html.logout.render(username));
     }
 

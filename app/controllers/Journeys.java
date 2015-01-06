@@ -30,7 +30,6 @@ public class Journeys extends Controller {
     /**
      * The entry point to the service implementation.
      */
-    //static JourneysService service = new JourneysServiceStub(Akka.system());
     static JourneysService service = new JourneysServiceHTTP(play.libs.ws.WS.client());
 
     /**
