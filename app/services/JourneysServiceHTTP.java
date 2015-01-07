@@ -20,6 +20,8 @@ public class JourneysServiceHTTP implements JourneysService {
     final WSClient client;
     /** A JSON object mapper to handle JSON serialization/deserialization */
     final ObjectMapper mapper;
+
+
     /** The Web service base URL */
     final static String API_URL = "http://localhost:8080";
 
@@ -51,6 +53,7 @@ public class JourneysServiceHTTP implements JourneysService {
     @Override
     public Observable<Attendee> attendees(Long journeyId) {
         throw new NotImplementedError();
+
     }
 
 }

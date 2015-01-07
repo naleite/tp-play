@@ -80,6 +80,7 @@ public class Journeys extends Controller {
      * JavaScript resource defining a reverse router allowing us to compute URLs of the application from client-side
      */
     public static Result javaScriptRouter() {
+        //return ok(Routes.javascriptRouter("routes", routes.javascript.Journeys.attendees()));
         return ok(Routes.javascriptRouter("routes", routes.javascript.Journeys.attendees()));
     }
 
