@@ -43,4 +43,10 @@ public interface JourneysService {
      */
     Observable<Attendee> attendees(Long journeyId);
 
+    /**
+     * @param journeyId Id of the observed journey
+     * @return journey dont id = journeyId dans la base de donnée
+     */
+    F.Promise<List<Journey>> getJourney(Long journeyId);
+
 }

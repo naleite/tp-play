@@ -103,7 +103,7 @@ public class Journeys extends Controller {
     static F.Promise<Result> withJourney(Long id, Function<Journey, Result> f) {
         return service.allJourneys().map(journeys -> {
             return journeys.stream().
-                filter(journey -> journey.id.equals(id)).
+                filter(journey -> journey.id == id).
                 findFirst().
                 map(f::apply).
                 orElseGet(Results::notFound);
