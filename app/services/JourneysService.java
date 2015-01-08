@@ -49,4 +49,11 @@ public interface JourneysService {
      */
     F.Promise<Journey> getJourney(Long journeyId);
 
+    /**
+     * @return A list of all the attendees handled by the service
+     */
+    F.Promise<List<Attendee>> allAttendees();
+
+
+    F.Promise<Boolean> delattendees();
 }

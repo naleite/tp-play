@@ -42,6 +42,13 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
+    public F.Promise<List<Attendee>> allAttendees(){
+        return client.url(API_URL + "/rest/ev/personne")
+                .get()
+                .map(r -> mapper.readValue(r.getBody(), new TypeReference<List<Attendee>>() {}));
+    }
+
+    @Override
     public F.Promise<Journey> getJourney(Long id) {
         try{
            return client.url(API_URL + "/rest/ev/getevent/"+id)
@@ -54,10 +61,7 @@ public class JourneysServiceHTTP implements JourneysService {
 
     @Override
     public F.Promise<Boolean> join(Long journeyId, Long driverId, String attendeeName) {
-        return client.url(API_URL + "/rest/ev/")
-                .get()
-                .map(r -> mapper.readValue(r.getBody(), new TypeReference<Boolean>() {}));
-
+        throw new NotImplementedError();
     }
 
     @Override

@@ -12,7 +12,9 @@ GET        /auth/logout                        controllers.Authentication.logout
 # Other Journeys actions
 GET        /journey/:id                        controllers.Journeys.journey(id: Long)
 
-
+#attendees actions
+GET         /attendees/                         controllers.Journeys.listAttendees()
+POST        /deleteAttendees                    controllers.Journeys.delattendees(id:Long)
 
 # TODO Part 2: insert routes handling users joining a journey here
 

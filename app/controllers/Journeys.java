@@ -18,6 +18,7 @@ import scala.NotImplementedError;
 import services.JourneysService;
 import services.JourneysServiceHTTP;
 import services.models.Journey;
+import views.html.list_attendees;
 
 import java.util.function.Function;
 
@@ -38,6 +39,14 @@ public class Journeys extends Controller {
     public static F.Promise<Result> journeys() {
         return service.allJourneys().
                 map(journeys -> ok(views.html.index.render(Authentication.username(), journeys)));
+    }
+
+    /**
+     * Show all visible attendees in BDD
+     */
+    public static F.Promise<Result> listAttendees() {
+        return service.allAttendees().
+                map(atendees -> ok(list_attendees.render( atendees)));
     }
 
     /**

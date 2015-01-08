@@ -1,0 +1,33 @@
+@(attendees: java.util.List[services.models.Attendee])
+@layout {
+
+
+    <h1>BDD des Personnes</h1>
+
+    <p>Vous pouvez Cliquer sur <strong class="more_detail">More Detail </strong>,
+        </br> pour acc&eacute;der au compte des personnes inscrites, et puis cr&eacute;e des evenements si
+        </br>vous le voulez.
+        .</p>
+    <p>Vous pouvez Cliquer sur le bouton DELETE pour supprimer la personne de la base de donn&eacute;es.</p>
+
+    <div>
+        @for(attendee <- attendees){
+        <div class='postBody'>
+            <h2  class="more_detail">@attendee.id</h2>
+            <div class='time'>@attendee.nom</div>
+            <div>Destination : @attendee.destination </div>
+
+            @if(attendee.voiture != null){
+                <div >Voiture : @attendee.voiture.series</div>
+                <div >Voiture : @attendee.voiture.nbPlaceTotal</div>
+            }
+            <form >
+                <button href="@routes.Journeys.listAttendees(attendee.id)">More Details</button>
+
+                <button href="@routes.Journeys.delattendees(attendee.id)">Delete</button>
+            </form>
+        </div>
+        }
+
+    </div>
+}
