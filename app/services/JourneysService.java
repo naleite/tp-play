@@ -47,6 +47,6 @@ public interface JourneysService {
      * @param journeyId Id of the observed journey
      * @return journey dont id = journeyId dans la base de donnée
      */
-    F.Promise<List<Journey>> getJourney(Long journeyId);
+    F.Promise<Journey> getJourney(Long journeyId);
 
 }

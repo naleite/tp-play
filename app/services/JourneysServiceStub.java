@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A in-memory implementation of the JourneysService interface.
  */
+/**
 public class JourneysServiceStub implements JourneysService {
 
     final ActorRef service;
@@ -108,7 +109,7 @@ public class JourneysServiceStub implements JourneysService {
                                             orElseGet(Optional::empty);
                                 });
                         sender().tell(result, self());
-                    }).build());**/
+                    }).build());
         }
     }
 
@@ -116,6 +117,7 @@ public class JourneysServiceStub implements JourneysService {
 
 
     }
+
     static class JoinAttendee {
         public final Long journeyId;
         public final Long attendeeId;
@@ -137,3 +139,4 @@ public class JourneysServiceStub implements JourneysService {
         }
     }
 }
+             */

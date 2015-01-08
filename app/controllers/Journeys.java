@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import play.Routes;
+import play.api.libs.concurrent.Promise;
 import play.data.Form;
 import play.data.validation.Constraints;
 import play.libs.Akka;
@@ -16,7 +17,6 @@ import rx.Subscription;
 import scala.NotImplementedError;
 import services.JourneysService;
 import services.JourneysServiceHTTP;
-import services.JourneysServiceStub;
 import services.models.Journey;
 
 import java.util.function.Function;
@@ -45,7 +45,9 @@ public class Journeys extends Controller {
      */
     public static F.Promise<Result> journey(Long id) {
 
-        throw new NotImplementedError();
+        return service.getJourney(id).
+                map(journeys -> ok(views.html.showjourney.render(journeys)));
+
     }
 
     /**
@@ -100,10 +102,10 @@ public class Journeys extends Controller {
         public Long driverId;
     }
 
-    static F.Promise<Result> withJourney(Long id, Function<Journey, Result> f) {
+     static F.Promise<Result> withJourney(Long id, Function<Journey, Result> f) {
         return service.allJourneys().map(journeys -> {
             return journeys.stream().
-                filter(journey -> journey.id == id).
+                filter(journey -> journey.id.equals(id)).
                 findFirst().
                 map(f::apply).
                 orElseGet(Results::notFound);

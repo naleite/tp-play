@@ -1,0 +1,20 @@
+@(journey: services.models.Journey)
+@layout {
+
+    <h1>Details Evenement</h1>
+    <h2>idEvenement: @journey.id</h2></br>
+    <p>Destination : @journey.dest</p>
+    <p>Depart : @journey.depart</p>
+    <p>NbPlaceDispo : @journey.nbPersonRest</p>
+    <p>Nom Conducteur :@journey.conducteur.nom</p>
+    <p>Les participants :
+                    @for(p <- journey.participants){
+                    <span >@p.nom ,</span></p>
+                    }
+    <h3>Liste des Commentaires</h3>
+    <div class="big_letter" >
+            @for(c  <- journey.listComEv){
+            <p class="comm">@c.personne.nom : @c.value</p>
+        }
+    </div>
+}

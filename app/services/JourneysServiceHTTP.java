@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import play.libs.F;
 import play.libs.ws.WSClient;
+import play.libs.ws.WSResponse;
 import rx.Observable;
 import scala.NotImplementedError;
 import services.models.Attendee;
@@ -41,12 +42,13 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
-    public F.Promise<List<Journey>> getJourney(Long id) {
-        // Example of implementation performing a GET request to the `/journeys` endpoint and interpreting the result as
-        // a list of Journey values.
-        return client.url(API_URL + "/rest/ev/")
-                .get()
-                .map(r -> mapper.readValue(r.getBody(), new TypeReference<List<Journey>>() {}));
+    public F.Promise<Journey> getJourney(Long id) {
+        try{
+           return client.url(API_URL + "/rest/ev/getevent/"+id)
+                    .get()
+                    .map(r -> mapper.readValue(r.getBody(), new TypeReference<Journey>() {}));
+        }catch(Exception e){ }
+        return null;
 
     }
 
