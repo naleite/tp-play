@@ -1,0 +1,80 @@
+@(attendees: java.util.List[services.models.Attendee])
+@layout {
+
+        <h1>Details Personne</h1>
+        <div>
+
+            <h2>Nom: {{post.nom}} <button ng-click="showModifNomCtrl()">Modifier</button></h2>
+            <div ng-hide="showModifNom">
+                <input type="text" name="nouveau_nom" ng-model="nouveau_nom.nom" required>
+                <button type="submit"  ng-click="submitModifNom()">Modifier le nom</button>
+            </div></br>
+            <div>id: {{post.id}} </div>
+            <div>Destination : {{post.destination}} </div>
+            <div>localisation : {{post.localisation}} </div>
+            <div ng-show="post.voiture != null">
+                <p>Voiture : {{post.voiture.series}} </p>
+                <p>Nb Place: {{post.voiture.nbPlaceTotal}} </p>
+            </div>
+
+            <form ng-show="post.voiture != null" id="zoneCreateEv">
+                <div class="decaler_droite">
+                    <h3>Creation d'un Evenement</h3>
+                    <p>Ici vous pouvez cr&eacute;e un Evenement de covoiturage </br>
+                        Dans laquelle <strong>{{post.nom}}</strong> sera
+                        conducteur.
+                    </p>
+                    <p>Veuillez sp&eacute;cifier la ville de d&eacute;part et de destination SVP</p>
+                    Depart:<br>
+                    <input type="text" name="depart" ng-model="myElementForm.depart" required>
+                    <br>
+
+                    Destination:<br>
+                    <input type="text" name="dest" ng-model="myElementForm.destination" required>
+                    <br>
+                    <button type="submit"  ng-click="submitData()">Create Evenement</button>
+                </div>
+            </form>
+
+            <form id="zoneTakeTrajet" >
+                <div>
+                    <h3>Participer &agrave; un evenement</h3>
+                    <p>Ici vous pouvez participer &agrave; des evenements, vue sur la page montrant la
+                        <a href="index.html">liste des evenements</a>
+                    </p>
+                    <select name="menu_destination" ng-model="participe_evenement" >
+                        <option value=""></option>
+
+                        <option value="{{ev.id}}"  ng-repeat="ev in evenements_not" ng-value="ev.id">{{ev.id}}: {{ev.depart}} - {{ev.dest}} </option>
+
+                    </select>
+                    <button type="submit" ng-click="participe()">Participer</button>
+
+                </div>
+            </form>
+
+            <form id="zoneCreateCommentaire">
+                <div>
+                    <h3>Creation de Commentaire</h3>
+                    <p>Ici vous pouvez r&eacute;diger des commentaires pour un des evenements ou vous
+                        avez particip&eacute;. </br>
+
+                    <form>
+                        <p>Veuillez choisir l'evenement </p>
+                        <select name="comment_ev" ng-model="commentaire_id_ev" >
+                            <option value=""></option>
+                            <option value="{{ev.id}}"  ng-repeat="ev in evenements" ng-value="ev.id">{{ev.id}}: {{ev.depart}} - {{ev.dest}} </option>
+                        </select>
+                        Votre message:<br>
+                        <input type="text" name="dest" ng-model="commentaire_value" required>
+                        <button type="submit"  ng-click="submit_commentaire()">Envoi Commentaire</button>
+                    </form>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+
+
+
+}

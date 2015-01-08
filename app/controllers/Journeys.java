@@ -17,9 +17,11 @@ import rx.Subscription;
 import scala.NotImplementedError;
 import services.JourneysService;
 import services.JourneysServiceHTTP;
+import services.models.Attendee;
 import services.models.Journey;
 import views.html.list_attendees;
 
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -39,6 +41,11 @@ public class Journeys extends Controller {
     public static F.Promise<Result> journeys() {
         return service.allJourneys().
                 map(journeys -> ok(views.html.index.render(Authentication.username(), journeys)));
+    }
+
+    public static F.Promise<Result> deleteAttendees(Long id) {
+        F.Promise<List<Attendee>> l = service.allAttendees();
+        return service.deleteAttendees(id).map("ok"-> ok(list_attendees.render(l)));
     }
 
     /**

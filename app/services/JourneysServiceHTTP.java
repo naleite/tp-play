@@ -60,6 +60,14 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
+    public F.Promise<String> deleteAttendees(Long idAttendee)
+    {
+        return client.url(API_URL + "/rest/ev/delete/personne/")
+                .post(idAttendee.toString())
+                .map(r -> mapper.readValue(r.getBody(), new TypeReference<String>() {}));
+    }
+
+    @Override
     public F.Promise<Boolean> join(Long journeyId, Long driverId, String attendeeName) {
         throw new NotImplementedError();
     }
