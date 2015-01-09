@@ -44,8 +44,8 @@ public class Journeys extends Controller {
     }
 
     public static F.Promise<Result> deleteAttendees(Long id) {
-        F.Promise<List<Attendee>> l = service.allAttendees();
-        return service.deleteAttendees(id).map("ok"-> ok(list_attendees.render(l)));
+        service.deleteAttendees(id);
+       return listAttendees();
     }
 
     /**

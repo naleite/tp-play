@@ -1,5 +1,6 @@
 package services;
 
+import adapters.ZeroMQObservableAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import play.libs.F;
@@ -60,11 +61,10 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
-    public F.Promise<String> deleteAttendees(Long idAttendee)
+    public void deleteAttendees(Long idAttendee)
     {
-        return client.url(API_URL + "/rest/ev/delete/personne/")
-                .post(idAttendee.toString())
-                .map(r -> mapper.readValue(r.getBody(), new TypeReference<String>() {}));
+        client.url(API_URL + "/rest/ev/delete/personne/")
+                .post(idAttendee.toString());
     }
 
     @Override
@@ -79,6 +79,7 @@ public class JourneysServiceHTTP implements JourneysService {
 
     @Override
     public Observable<Attendee> attendees(Long journeyId) {
+        ZeroMQObservableAdapter k;
         throw new NotImplementedError();
     }
 
