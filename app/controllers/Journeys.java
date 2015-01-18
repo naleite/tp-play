@@ -1,19 +1,13 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import play.Routes;
-import play.api.libs.concurrent.Promise;
-import play.data.Form;
 import play.data.validation.Constraints;
-import play.libs.Akka;
-import play.libs.EventSource;
 import play.libs.F;
-import play.libs.ws.WS;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
 import play.mvc.Security;
-import rx.Subscription;
 import scala.NotImplementedError;
 import services.JourneysService;
 import services.JourneysServiceHTTP;
@@ -21,7 +15,7 @@ import services.models.Attendee;
 import services.models.Journey;
 import views.html.list_attendees;
 
-import java.util.List;
+
 import java.util.function.Function;
 
 import static play.data.Form.form;
@@ -37,7 +31,7 @@ public class Journeys extends Controller {
      */
     static JourneysService service = new JourneysServiceHTTP(play.libs.ws.WS.client());
 
-
+    static F.Promise<Attendee> currentAttendee;
     /**
      * Show all visible journeys
      */
@@ -63,9 +57,8 @@ public class Journeys extends Controller {
      * Show all visible attendees in BDD
      */
     public static F.Promise<Result> getAttendee(Long id) {
-
-        return service.getAttendee(id).
-               map(attendee -> ok(views.html.detail_personne.render(attendee, form(AttendeeCtrl.AttendeeCreateJourney.class))))
+        currentAttendee = service.getAttendee(id);
+        return currentAttendee.map(attendee -> ok(views.html.detail_personne.render(attendee, form(AttendeeCtrl.AttendeeCreateJourney.class))))
                 ;
     }
 

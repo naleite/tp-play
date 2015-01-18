@@ -60,7 +60,7 @@ public interface JourneysService {
      */
     void deleteAttendees(Long idAttendee);
 
-    public void create_ev(String idAttendee);
+    public void create_ev(String idAttendee, String depart, String dest);
 
     public F.Promise<Attendee> getAttendee(Long id);
 }

@@ -14,6 +14,7 @@ import services.models.Attendee;
 import services.models.Journey;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * JourneyService implementation that delegates to a third party JSON Web service
@@ -79,18 +80,23 @@ public class JourneysServiceHTTP implements JourneysService {
     {
         JsonNode json = Json.newObject()
                 .put("id", idAttendee.toString());
-
-        client.url(API_URL + "delete/personne/")
-                    .post(json);
+        System.out.println("delete called ");
+        client.url(API_URL + "/rest/ev/delete/personne/")
+                .setQueryParameter("id",  idAttendee.toString()).delete();
     }
 
     @Override
-    public void create_ev(String idAttendee)
+    public void create_ev(String idAttendee, String depart, String dest)
     {
         JsonNode json = Json.newObject()
-                .put("id", idAttendee);
+                .put("id", idAttendee)
+                .put("depart", depart)
+                .put("dest", dest);
+
         client.url(API_URL + "/rest/ev/propose//")
-                .post(json);
+                .setQueryParameter("id", idAttendee)
+                .setQueryParameter("depart", depart)
+                .setQueryParameter("dest", dest);
     }
 
 

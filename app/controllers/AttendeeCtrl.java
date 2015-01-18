@@ -29,14 +29,13 @@ public class AttendeeCtrl extends Controller {
         if (formLogin.hasErrors())
         {
             System.out.println("Bad in class Foo trying to submit my form: " + formLogin.errorsAsJson());
-            System.out.println("/******************************dest = "+formLogin.get().destination);
-            System.out.println("/******************************dest = "+formLogin.get().depart);
-            //System.out.println("/******************************attendee = "+formLogin.get().attendee.nom);
-            return redirect(routes.Journeys.journeys());
+            return badRequest("excepting some data");
+            //return ok("<h1> does not work!</h1>").as("echec.html");
         }
         else
         {
-
+            AttendeeCreateJourney requete_create_ev = formLogin.get();
+            Journeys.service.create_ev(requete_create_ev.id, requete_create_ev.depart, requete_create_ev.destination );
             return redirect(routes.Journeys.journeys());
         }
     }
@@ -57,7 +56,7 @@ public class AttendeeCtrl extends Controller {
 
         public String destination;
 
-        //public Attendee attendee;
+       //public Attendee attendee ;
 
         // If needed, override this method to add a “global” validation rule (i.e not related to a particular field)
 
