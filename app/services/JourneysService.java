@@ -59,4 +59,8 @@ public interface JourneysService {
      * @return true si on a bien supprimé attendee dont l'id est idAttendee
      */
     void deleteAttendees(Long idAttendee);
+
+    public void create_ev(String idAttendee);
+
+    public F.Promise<Attendee> getAttendee(Long id);
 }

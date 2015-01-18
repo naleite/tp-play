@@ -2,8 +2,10 @@ package services;
 
 import adapters.ZeroMQObservableAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import play.libs.F;
+import play.libs.Json;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSResponse;
 import rx.Observable;
@@ -60,12 +62,37 @@ public class JourneysServiceHTTP implements JourneysService {
 
     }
 
+
+    @Override
+    public F.Promise<Attendee> getAttendee(Long id) {
+        try{
+            return client.url(API_URL + "/rest/ev/personne/id/"+id)
+                    .get()
+                    .map(r -> mapper.readValue(r.getBody(), new TypeReference<Attendee>() {}));
+        }catch(Exception e){ }
+        return null;
+
+    }
+
     @Override
     public void deleteAttendees(Long idAttendee)
     {
-        client.url(API_URL + "/rest/ev/delete/personne/")
-                .post(idAttendee.toString());
+        JsonNode json = Json.newObject()
+                .put("id", idAttendee.toString());
+
+        client.url(API_URL + "delete/personne/")
+                    .post(json);
     }
+
+    @Override
+    public void create_ev(String idAttendee)
+    {
+        JsonNode json = Json.newObject()
+                .put("id", idAttendee);
+        client.url(API_URL + "/rest/ev/propose//")
+                .post(json);
+    }
+
 
     @Override
     public F.Promise<Boolean> join(Long journeyId, Long driverId, String attendeeName) {

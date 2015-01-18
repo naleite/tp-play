@@ -24,6 +24,8 @@ import views.html.list_attendees;
 import java.util.List;
 import java.util.function.Function;
 
+import static play.data.Form.form;
+
 /**
  * Controller grouping actions related to the journeys service.
  */
@@ -34,6 +36,7 @@ public class Journeys extends Controller {
      * The entry point to the service implementation.
      */
     static JourneysService service = new JourneysServiceHTTP(play.libs.ws.WS.client());
+
 
     /**
      * Show all visible journeys
@@ -54,6 +57,16 @@ public class Journeys extends Controller {
     public static F.Promise<Result> listAttendees() {
         return service.allAttendees().
                 map(atendees -> ok(list_attendees.render( atendees)));
+    }
+
+    /**
+     * Show all visible attendees in BDD
+     */
+    public static F.Promise<Result> getAttendee(Long id) {
+
+        return service.getAttendee(id).
+               map(attendee -> ok(views.html.detail_personne.render(attendee, form(AttendeeCtrl.AttendeeCreateJourney.class))))
+                ;
     }
 
     /**

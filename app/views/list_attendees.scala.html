@@ -22,9 +22,9 @@
                 <div >Voiture : @attendee.voiture.nbPlaceTotal</div>
             }
             <form >
-                <button href="@routes.Journeys.listAttendees()">More Details</button>
+                <a href="@routes.Journeys.getAttendee(attendee.id)">More Details</a>
 
-                <button href="@routes.Journeys.deleteAttendees(attendee.id)">Delete</button>
+                <a href="@routes.Journeys.deleteAttendees(attendee.id)">Delete</a>
             </form>
         </div>
         }

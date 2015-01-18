@@ -6,11 +6,11 @@
     <p>Destination : @journey.dest</p>
     <p>Depart : @journey.depart</p>
     <p>NbPlaceDispo : @journey.nbPersonRest</p>
-    <p>Nom Conducteur :@journey.conducteur.nom</p>
+    <p>Nom Conducteur :<a href="@routes.Journeys.getAttendee(journey.conducteur.id)"> @journey.conducteur.nom </a></p>
     <p>Les participants :
                     @for(p <- journey.participants){
-                    <span >@p.nom ,</span></p>
-                    }
+                    <span > <a href="@routes.Journeys.getAttendee(p.id)">@p.nom</a> ,</span>
+                    }</p>
     <h3>Liste des Commentaires</h3>
     <div class="big_letter" >
             @for(c  <- journey.listComEv){
