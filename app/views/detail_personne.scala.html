@@ -34,15 +34,16 @@
                         </div>
                     </div>
                     }
-                    <input value=@attendee.id name="id"  >
+                    <input value=@attendee.id name="id" type="hidden"  >
 
                     @helper.inputText(form("depart"), 'placeholder -> "depart _ evenement", '_label -> "depart", 'class -> "form-control")
 
                     @helper.inputText(form("destination"), 'placeholder -> "destination _ evenement", '_label -> "destination", 'class -> "form-control")
                     <!-- <input value="@attendee" name="attendee"> -->
                     <button class="btn">Create Evenement</button>
+                    }
                 </div>
-                }
+
             }
 
 

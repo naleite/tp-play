@@ -76,27 +76,29 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
-    public void deleteAttendees(Long idAttendee)
+    public  F.Promise<List<Attendee>> deleteAttendees(Long idAttendee)
     {
-        JsonNode json = Json.newObject()
-                .put("id", idAttendee.toString());
-        System.out.println("delete called ");
-        client.url(API_URL + "/rest/ev/delete/personne/")
+
+        String queryAddress = API_URL + "/rest/ev/delete/personne/"+ idAttendee.toString();
+
+        client.url(queryAddress)
                 .setQueryParameter("id",  idAttendee.toString()).delete();
+        System.out.println("delete called at "+queryAddress);
+        return allAttendees();
     }
 
     @Override
     public void create_ev(String idAttendee, String depart, String dest)
     {
-        JsonNode json = Json.newObject()
-                .put("id", idAttendee)
-                .put("depart", depart)
-                .put("dest", dest);
 
-        client.url(API_URL + "/rest/ev/propose//")
+        String queryAddress = API_URL + "/rest/ev/propose/";
+        client.url(queryAddress)
                 .setQueryParameter("id", idAttendee)
                 .setQueryParameter("depart", depart)
-                .setQueryParameter("dest", dest);
+                .setQueryParameter("dest", dest)
+                .post("");
+               /** ;**/
+        System.out.println("create evenement envoyé at "+queryAddress);
     }
 
 

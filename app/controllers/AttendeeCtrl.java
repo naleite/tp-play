@@ -29,12 +29,18 @@ public class AttendeeCtrl extends Controller {
         if (formLogin.hasErrors())
         {
             System.out.println("Bad in class Foo trying to submit my form: " + formLogin.errorsAsJson());
-            return badRequest("excepting some data");
+            //return badRequest("excepting some data");
             //return ok("<h1> does not work!</h1>").as("echec.html");
+            return redirect(routes.Journeys.getAttendee(Long.parseLong(formLogin.get().id)));
+
         }
         else
         {
             AttendeeCreateJourney requete_create_ev = formLogin.get();
+            System.out.println("id = "+requete_create_ev.id);
+            System.out.println("depart = "+requete_create_ev.depart);
+            System.out.println("destination = "+requete_create_ev.destination);
+
             Journeys.service.create_ev(requete_create_ev.id, requete_create_ev.depart, requete_create_ev.destination );
             return redirect(routes.Journeys.journeys());
         }
