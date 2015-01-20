@@ -2,6 +2,7 @@ package controllers;
 
 
 import play.Routes;
+import play.data.Form;
 import play.data.validation.Constraints;
 import play.libs.F;
 import play.mvc.Controller;
@@ -62,6 +63,8 @@ public class Journeys extends Controller {
         return currentAttendee.map(attendee -> ok(views.html.detail_personne.render(attendee, form(AttendeeCtrl.AttendeeCreateJourney.class))))
                 ;
     }
+
+
 
     /**
      * Show the details of the journey with the given id

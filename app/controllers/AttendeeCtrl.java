@@ -28,10 +28,16 @@ public class AttendeeCtrl extends Controller {
         Form<AttendeeCreateJourney> formLogin = form(AttendeeCreateJourney.class).bindFromRequest();
         if (formLogin.hasErrors())
         {
-            System.out.println("Bad in class Foo trying to submit my form: " + formLogin.errorsAsJson());
-            //return badRequest("excepting some data");
+            String error = "Bad in class AttendeeCtrl trying to submit my form: " + formLogin.errorsAsJson();
+
+
+            return badRequest("excepting some data \n" + error);
+
+
             //return ok("<h1> does not work!</h1>").as("echec.html");
-            return redirect(routes.Journeys.getAttendee(Long.parseLong(formLogin.get().id)));
+
+            //return redirect(routes.Journeys.getAttendee(Long.parseLong(formLogin.get().id)));
+
 
         }
         else

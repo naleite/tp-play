@@ -4,10 +4,7 @@
 
 @skel {
 
-       <p>Nous n'avons pas dans le cadre de ce tp, implémenter de mot de passe pour utilisateur
-       pour se connecter, mais introduit le formulaire de login avec traitement des erreurs comme demandé dans le tp</p>
-    <p>Login= test </p>
-    <p>Mot de passe = test</p>
+
     @helper.form(action = routes.Authentication.authenticate()) {
 
         @if(form.hasGlobalErrors) {
@@ -20,11 +17,15 @@
             </div>
         }
 
-        @helper.inputText(form("name"), 'placeholder -> "Clint Eastwood", '_label -> "Login", 'class -> "form-control")
+        @helper.inputText(form("name"), '_label -> "Login", 'class -> "form-control")
 
-        @helper.inputPassword(form("password"), 'placeholder -> "********", '_label -> "Password", 'class -> "form-control")
+        @helper.inputPassword(form("password"), '_label -> "Password", 'class -> "form-control")
 
         <button class="btn">Sign in</button>
     }
+        <p>Nous n'avons pas dans le cadre de ce tp, implémenter de mot de passe pour utilisateur
+            pour se connecter, mais introduit le formulaire de login avec traitement des erreurs comme demandé dans le tp</p>
+        <p>Login= test </p>
+        <p>Mot de passe = test</p>
 
 }
