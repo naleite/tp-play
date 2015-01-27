@@ -76,15 +76,12 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
-    public  F.Promise<List<Attendee>> deleteAttendees(Long idAttendee)
+    public  void deleteAttendees(Long idAttendee)
     {
-
         String queryAddress = API_URL + "/rest/ev/delete/personne/"+ idAttendee.toString();
-
-        client.url(queryAddress)
-                .setQueryParameter("id",  idAttendee.toString()).delete();
+        client.url(queryAddress).delete().;
         System.out.println("delete called at "+queryAddress);
-        return allAttendees();
+
     }
 
     @Override
@@ -97,7 +94,7 @@ public class JourneysServiceHTTP implements JourneysService {
                 .setQueryParameter("depart", depart)
                 .setQueryParameter("dest", dest)
                 .post("");
-               /** ;**/
+
         System.out.println("create evenement envoyé at "+queryAddress);
     }
 

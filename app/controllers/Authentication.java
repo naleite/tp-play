@@ -49,7 +49,11 @@ public class Authentication extends Controller {
                 session("username",newLogin.name);
                 return redirect(routes.Journeys.journeys());
             }
-            else return badRequest(views.html.login.render(formLogin));
+            else
+            {
+                formLogin.reject("login/password incorrect");
+                return badRequest(views.html.login.render(formLogin));
+            }
         }
 
 

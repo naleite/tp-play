@@ -41,10 +41,10 @@ public class Journeys extends Controller {
                 map(journeys -> ok(views.html.index.render(Authentication.username(), journeys)));
     }
 
-    public static F.Promise<Result> deleteAttendees(Long id) {
-        return service.deleteAttendees(id)
-        .map(atendees -> ok(list_attendees.render(atendees)));
-
+    public static Result deleteAttendees(Long id) {
+        service.deleteAttendees(id);
+        System.out.println("finish delete in Play");
+        return redirect(routes.Journeys.journeys());
     }
 
     /**

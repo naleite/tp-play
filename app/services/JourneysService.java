@@ -58,7 +58,7 @@ public interface JourneysService {
      * @param idAttendee Id de l'attendee qu'on veut supprimer
      * @return true si on a bien supprimé attendee dont l'id est idAttendee
      */
-    F.Promise<List<Attendee>> deleteAttendees(Long idAttendee);
+    void deleteAttendees(Long idAttendee);
 
     public void create_ev(String idAttendee, String depart, String dest);
 
