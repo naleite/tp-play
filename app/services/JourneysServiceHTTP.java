@@ -76,10 +76,10 @@ public class JourneysServiceHTTP implements JourneysService {
     }
 
     @Override
-    public  void deleteAttendees(Long idAttendee)
+    public void deleteAttendees(Long idAttendee)
     {
         String queryAddress = API_URL + "/rest/ev/delete/personne/"+ idAttendee.toString();
-        client.url(queryAddress).delete().;
+        client.url(queryAddress).setQueryParameter("id",idAttendee.toString()).delete();
         System.out.println("delete called at "+queryAddress);
 
     }
